@@ -22,13 +22,8 @@ The Detection Lab project aimed to establish a controlled environment for simula
 - Telemetry generation tools to create realistic network traffic and attack scenarios.
 
 ## Steps
-drag & drop screenshots here or use imgur and reference them using imgsrc
 
-Every screenshot should have some text explaining what the screenshot is about.
-
-Example below.
-
-*Ref 1: Network Diagram*
+*Add Network Diagram Later*
 
 Installing Virtual Box
 - Step 1.1: Head to virtualbox.org and click download.<img width="975" height="732" alt="image" src="https://github.com/user-attachments/assets/6ba7d8c6-4809-418c-8994-116b06cf8868" />
