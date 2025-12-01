@@ -65,21 +65,45 @@ The objective of this project was to architect and deploy a robust, virtualized 
 
 #### Installing VirtualBox
 Step 1: Head to https://www.virtualbox.org/wiki/Downloads and click download. 
-<img width="975" height="731" alt="image" src="https://github.com/user-attachments/assets/f3fe5736-ef0e-4657-b1c4-4172bd811086" />
-
+<img width="975" height="731" alt="image" src="https://github.com/user-attachments/assets/30ad990f-474a-4f8a-911a-c4c6dcccae9b" />
 Step 1.2: Choose the operating system you are using… in my case Windows. 
-<img width="975" height="675" alt="image" src="https://github.com/user-attachments/assets/88bc5a72-cc3b-45d8-a20b-d7fe249548a5" />
-
+<img width="975" height="675" alt="image" src="https://github.com/user-attachments/assets/29b9f614-47a0-4d66-87fa-3f8cc50b1d6d" />
 Step 2.1: Compare Hash values to verify integrity of installer. 
-<img width="975" height="906" alt="image" src="https://github.com/user-attachments/assets/fb1546b5-882c-44fc-b69b-1ce014e524f9" />
+<img width="975" height="906" alt="image" src="https://github.com/user-attachments/assets/0dc3caff-3d42-4949-b1be-21040c2b9d4d" />
+Step 2.2: Find the VirtualBox version of what you downloaded inside the checksum list. In my case “VirtualBox-7.2.4-170995-Win.exe”  
+<img width="975" height="423" alt="image" src="https://github.com/user-attachments/assets/7778b3fd-9d16-41e5-94cf-718ea70ea7c3" />
+Step 2.3: Go to where you downloaded the file > Right Click > Then click “Open in Terminal”  
+<img width="975" height="467" alt="image" src="https://github.com/user-attachments/assets/c5546b68-4e84-4dda-a20a-0994121d368f" />
 
-Step 2.2 Find the VirtualBox version of what you downloaded inside the checksum list. In my case “VirtualBox-7.2.4-170995-Win.exe” 
-<img width="975" height="423" alt="image" src="https://github.com/user-attachments/assets/a5fe0d1e-2723-4774-831d-5ff766179b67" />
+Step2.4: This will open up powershell and in powershell type command.
+```PowerShell
+Get-FileHash .\VirtualBox-7.2.4-170995-Win.exe
+```
+Then press enter.
+Note: “VirtualBox-7.2.4-170995-Win.exe” is my file name yours might be different
+<img width="975" height="542" alt="image" src="https://github.com/user-attachments/assets/4301930f-691c-4e6b-a3e2-8b96c00bfdf9" />
+Step 2.5: Double click the generated hash to copy it  
+<img width="975" height="548" alt="image" src="https://github.com/user-attachments/assets/9429e57f-56ac-45e3-af4d-0a0e7e07520c" />
+Step 2.6: Return to virtualbox checksum list > do ctrl+F > paste in the hash value in powershell from the last step  
+<img width="975" height="938" alt="image" src="https://github.com/user-attachments/assets/905c2298-3ce4-41ad-81ec-7a778e6c4cf6" />
+Step 2.7: If the same hash value shows the file is not tampered with thus verifying integrity.
 
-Step 2.3 Go to where you downloaded the file > Right Click > Then click “Open in Terminal” 
-<img width="975" height="467" alt="image" src="https://github.com/user-attachments/assets/87b9cc9f-b69a-436d-9fc9-12c2d8cf1a8b" />
+Step 3: Initialize installation.
+<img width="767" height="610" alt="image" src="https://github.com/user-attachments/assets/f0967515-9544-43e2-b3ff-ebc1529ba954" />
+<img width="769" height="613" alt="image" src="https://github.com/user-attachments/assets/c065808c-3cd3-4a96-b56b-e2b2510c0040" />
+<img width="760" height="617" alt="image" src="https://github.com/user-attachments/assets/d7024a5f-06f3-4edb-9d51-b431db0c4800" />
+<img width="754" height="623" alt="image" src="https://github.com/user-attachments/assets/44e71615-cdd6-4a82-adca-907e88b25493" />
+<img width="756" height="617" alt="image" src="https://github.com/user-attachments/assets/4163a520-fcd2-4578-b17a-6e0103c080f1" />
+<img width="752" height="608" alt="image" src="https://github.com/user-attachments/assets/0eed9395-273f-411f-9414-bb96b74ead8e" />
+<img width="763" height="623" alt="image" src="https://github.com/user-attachments/assets/3dc30d93-e60b-494e-b9d1-e113f12c450d" />
+<img width="767" height="617" alt="image" src="https://github.com/user-attachments/assets/5a089bcf-9387-4acf-bbad-c9db8776268c" />
 
-**Step2.4:** This will open up powershell and in powershell type command 
+
+
+
+
+
+
 
 
 
