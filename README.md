@@ -54,10 +54,16 @@ The objective of this project was to architect and deploy a robust, virtualized 
 * **7-Zip** (File Archiving)
 * **Python 3** (`http.server` module)
 
-### Steps
-
-**Diagram**
+### Network Architecture Diagram
 <img width="975" height="413" alt="image" src="https://github.com/user-attachments/assets/f02ac034-e5a0-4291-92e1-eb2544aa6c44" />
+
+### Key Results
+
+### Link to Full Walkthrough (docs/Full-Walkthrough.md) 
+
+### Future Improvements
+
+### Conclusion
 
 #### Directory 
 
