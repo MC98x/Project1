@@ -72,6 +72,8 @@ The objective of this project was to architect and deploy a robust, virtualized 
 9. [Configuring VMs Based On Use Case Scenario](#configuring-vms-based-on-use-case-scenario)
 10. [Scenario 1: Testing Tools That Require Internet Connectivity](#scenario-1-testing-tools-that-require-internet-connectivity)
 11. [Scenario 2: Analyzing Malware Recommended Settings](#scenario-2-analyzing-malware-recommended-settings)
+12. [Network Configuration For Both VMs](#network-configuration-for-both-vms)
+13. [Installing Splunk On Windows 11 Pro VM](#installing-splunk-on-windows-11-pro-vm)
 
 #### Installing VirtualBox
 Step 1: Head to https://www.virtualbox.org/wiki/Downloads and click download. 
@@ -248,9 +250,170 @@ Step 1: This is simple. Use NAT and default settings for you Win11 Pro and Kali 
 Step 2: Repeat the same step into Kali Linux VM to “NAT”. It should be NAT already by default.
 
 #### Scenario 2: Analyzing Malware Recommended Settings
+Step 1: I recommend using the “Not attached” or “Internal Network” if the malware we are testing requires internet connectivity. Again, not attached means there is no internet connectivity and Internal Network means only VMs can communicate with each other not the host. Please refer to each diagram in “Configure VMs based on use case” section for a visual aid.   
+<img width="975" height="767" alt="image" src="https://github.com/user-attachments/assets/d3de1be4-ae14-4d0a-b9ce-5fa99baa8795" />
+<img width="975" height="646" alt="image" src="https://github.com/user-attachments/assets/c2bc3261-b52f-4434-ae7c-e82a65a579b7" />
+<img width="975" height="658" alt="image" src="https://github.com/user-attachments/assets/8a9b342f-95bd-409a-84bc-5c0fb1d7039b" />
+
+Step 2: Change Network name to “Test” or any name you prefer then hit ok.
+<img width="975" height="660" alt="image" src="https://github.com/user-attachments/assets/67a9258e-7552-4983-90dd-8e73b1b68f48" />
+
+  Step 3: Repeat the same step and change the Kali Linux VM to Internal Network and using the “Test” network we created in the previous steps.  
+<img width="975" height="656" alt="image" src="https://github.com/user-attachments/assets/ffb2b514-b28d-429f-bfe5-51952a3e8433" />
+
+#### Network Configuration For Both VMs 
+Step 1: Assign static IP addresses for Win11 Pro VM. Power on VM.  
+<img width="975" height="804" alt="image" src="https://github.com/user-attachments/assets/9617a8fb-e13f-44fe-a561-622937d9a0de" />
+
+Step 1.1: Hover on the globe icon at the bottom right and right click. Then click on “Network and Internet Settings”  
+<img width="975" height="810" alt="image" src="https://github.com/user-attachments/assets/6bd070dd-995d-41ff-b893-45646b0931e3" />
+
+Step 1.2: Click on “Ethernet”  
+<img width="975" height="777" alt="image" src="https://github.com/user-attachments/assets/a2f73000-3402-43be-a453-481ba21e0d0b" />
+
+Step 1.3: click IP assignment, “Edit”  
+<img width="975" height="900" alt="image" src="https://github.com/user-attachments/assets/394352ff-3b94-44dd-98b4-18bdd69146e6" />
+
+Step 1.4: Switch from “DHCP” to “Manual”  
+<img width="975" height="821" alt="image" src="https://github.com/user-attachments/assets/dd6fe979-ff70-4ae2-8d14-58f0c45f5dcf" />
+
+Step 1.5: Turn on “IPv4” and input IP address = 192.168.20.10, Subnet Mask = /24 or 255.255.255.0 then click save. We will leave gateway and dns blank for now since it’s a simple lab environment.  
+<img width="975" height="946" alt="image" src="https://github.com/user-attachments/assets/51e69854-06f9-4daf-8f8e-552b851be400" />
+
+Step 1.6: Lets verify our configuartion changes by going to command prompt and typing command “ipconfig”  
+<img width="975" height="821" alt="image" src="https://github.com/user-attachments/assets/39f42c4e-c1b2-449e-9974-023997ca42a9" />
+<img width="975" height="817" alt="image" src="https://github.com/user-attachments/assets/16f60e62-3fb9-4f2a-8234-40a442273907" />
 
 
+Step 1.7: We need to allow ICMP ping request so Kali Linux VM can ping Win 11 Pro VM. Search “Windows Defender Firewall with Advanced Security”.  
+<img width="975" height="796" alt="image" src="https://github.com/user-attachments/assets/068fe29a-2c3b-4bc9-863d-00320637dd27" />
 
+Step 1.8: Go to Inbound Rules > Scroll and find “2 of File and Print Sharing (Echo Request – ICMPv4-In), then ctrl click both to select both, then right click both then, “Enable Rule”  
+<img width="975" height="813" alt="image" src="https://github.com/user-attachments/assets/49c1a959-64a4-43c7-9569-8dac47807264" />
+
+Step 1.9: There should be a green check mark on both.
+ <img width="975" height="813" alt="image" src="https://github.com/user-attachments/assets/cf7fc8b9-a0ae-4965-9405-364612408da1" />
+
+Step 2: Assign static IP addresses for Kali Linux VM. Power on VM. Again user = kali pw =kali  
+<img width="975" height="842" alt="image" src="https://github.com/user-attachments/assets/8e981bcc-e3be-47ac-8702-1c8e02b97100" />
+
+Step 2.1: Right click Network Icon on top right corner > Click Edit Connections  
+<img width="975" height="838" alt="image" src="https://github.com/user-attachments/assets/58846b50-0c73-4efd-a4f0-6547e90e12bf" />
+
+Step 2.2: Select “Wired Connection” then click Gear icon on bottom left corner  
+<img width="975" height="833" alt="image" src="https://github.com/user-attachments/assets/3d8c554f-8c07-4c24-b761-025da52de299" />
+
+Step 2.3: Go to “IPv4 Settings” Tab > Change Method from “DHCP” to “Manual”, click Add then type in “192.168.20.11, Netmask = /24 then click save.  
+<img width="975" height="848" alt="image" src="https://github.com/user-attachments/assets/d82333cb-150d-4490-8110-88fabf49c4b3" />
+
+Step 2.4: Verify network configuration by right clicking on desktop screen > Open Terminal  
+<img width="975" height="823" alt="image" src="https://github.com/user-attachments/assets/fc5a165f-fb21-4b09-9914-9ae8ad1561ff" />
+
+Step 2.5: Type in command “ifconfig” and verify “inet” is “192.168.20.11” and “netmask” is “255.255.255.0” that is /24.
+<img width="975" height="840" alt="image" src="https://github.com/user-attachments/assets/e7b082e1-6dcb-4c63-8556-cbdf8c73d490" />
+
+Step 3: Lets verify connectivity by pinging from both VMs.
+
+Step 3.1: Ping 192.168.20.10(Win11 Pro VM) from 192.168.20.11(Kali VM). Go to terminal > type command “ping 192.168.20.10”. Success. 
+<img width="975" height="835" alt="image" src="https://github.com/user-attachments/assets/acd6ff1b-3790-4df3-99f4-72fa10d443bb" />
+
+Step 3.2: Ping 192.168.20.11(Kali VM) from 192.168.20.10(Win11 Pro VM). Go to Command Prompt > Type command “Ping 192.168.20.11”. Success.  
+<img width="975" height="813" alt="image" src="https://github.com/user-attachments/assets/d22b20c8-a13e-4dba-a5df-4e2b62818c95" />
+
+#### Installing Splunk On Windows 11 Pro VM
+Step 1: Head over to https://www.splunk.com/en_us/download/splunk-enterprise.html. Create an account for a free download.  
+<img width="973" height="490" alt="image" src="https://github.com/user-attachments/assets/64793a93-30e2-4e74-ad46-59c47dcbbc6c" />
+
+Step 2: Create a free account then proceed to the download page. Download for the OS you are running. In my case for Windows.
+<img width="975" height="815" alt="image" src="https://github.com/user-attachments/assets/adb0f770-c827-4302-a038-f44387b940e2" />
+
+Step 3: Initialize Splunk Installer        
+<img width="975" height="821" alt="image" src="https://github.com/user-attachments/assets/bc455132-1d3f-4fd2-9d1a-6c8bd099f374" />
+<img width="975" height="810" alt="image" src="https://github.com/user-attachments/assets/d7678aa5-2a19-4708-8292-16f76a65d7de" />
+<img width="975" height="810" alt="image" src="https://github.com/user-attachments/assets/8272161b-ba81-4d08-b1a6-9f6ddd02e957" />
+<img width="975" height="873" alt="image" src="https://github.com/user-attachments/assets/9eb19bf1-678f-4b93-9470-9d99159a2f7e" />
+<img width="975" height="804" alt="image" src="https://github.com/user-attachments/assets/c5a890f5-69c5-4aa4-960e-91fd4d824c74" />
+<img width="975" height="815" alt="image" src="https://github.com/user-attachments/assets/d75c7fea-31ca-46fc-9700-15bd7fbe0066" />
+<img width="975" height="802" alt="image" src="https://github.com/user-attachments/assets/3c066470-9e7a-4641-8c49-cebbacdcb2c2" />
+
+Step 4: Login to Splunk Account 
+<img width="975" height="821" alt="image" src="https://github.com/user-attachments/assets/0ff5de6b-b220-4966-ae3b-acebb8385348" />
+
+Step 5: Lets demo and explore Splunk by adding some data! From the home page click “add data”  
+<img width="975" height="810" alt="image" src="https://github.com/user-attachments/assets/7628ef9f-e5d2-4817-94c2-438c21865346" />
+
+Step 6: Scroll Down and click “Monitor” 
+<img width="975" height="802" alt="image" src="https://github.com/user-attachments/assets/42a10274-6d63-4a8f-b13e-cc177e5308fb" />
+
+Step 7: click on “Local Event Logs” and choose which event logs you want to monitor. I will choose Application, Security, and system but you are free to choose based on use case. I am just showing one of the many things you can do with Splunk.  
+<img width="975" height="817" alt="image" src="https://github.com/user-attachments/assets/1dd83d89-0590-4145-ae79-e1b17294f7e7" />
+
+Step 8: once you click next change “Index” from “Default” from “Main”. Main should be the deafult but just making sure we choose “main”.  
+<img width="975" height="815" alt="image" src="https://github.com/user-attachments/assets/305b235f-874b-4f37-a691-4be133b42aef" />
+
+Step 9: Click “Review” then hit Submit 
+<img width="975" height="804" alt="image" src="https://github.com/user-attachments/assets/830fd721-3c73-41d9-9521-120fa58c4a57" />
+
+Step 10: Click Start Searching 
+<img width="975" height="804" alt="image" src="https://github.com/user-attachments/assets/c24f6d71-e3b3-40f8-91b0-ecaf4e282861" />
+
+Step 11: Now we can start analyzing specific events!  
+<img width="975" height="810" alt="image" src="https://github.com/user-attachments/assets/bc37da2f-7bc1-4050-ab98-e6d93db4355a" />
+
+Step 12: For example. We can search up a specific Event Code and correlate that to a specific event by simply searching up the event code.
+ <img width="975" height="810" alt="image" src="https://github.com/user-attachments/assets/1526ce84-55f1-46e4-9f48-004ae52fb9a4" />
+<img width="975" height="806" alt="image" src="https://github.com/user-attachments/assets/486ea2dd-acce-4d4c-b75b-b11c5c476655" />
+
+#### Installing Sysmon 
+Step 1: Head to https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon. Then click download based on your OS platform.
+<img width="975" height="813" alt="image" src="https://github.com/user-attachments/assets/b107b1de-b6bd-48aa-9923-e0a9edec1b59" />
+
+Step 2: Now lets install the configuration files. Head to https://github.com/olafhartong/sysmon-modular/blob/master/sysmonconfig.xml. Then click “Raw”  
+<img width="975" height="804" alt="image" src="https://github.com/user-attachments/assets/ab454e64-7c97-4b66-a747-fa285d483d1a" />
+
+Step 3: Right click + Save as any location you want.  
+<img width="975" height="810" alt="image" src="https://github.com/user-attachments/assets/ced7e60e-9d26-4d4d-8296-8d1c58f3717e" />
+
+Step 4: Lets go back to the sysmon zip we downloaded before and extract all of its contents by right clicking the folder and clicking “Extract All”.    
+<img width="975" height="815" alt="image" src="https://github.com/user-attachments/assets/09431c46-eed8-4bf2-a171-ca7e44b82671" />
+<img width="971" height="704" alt="image" src="https://github.com/user-attachments/assets/a931c49b-375a-4ce5-9436-da124f752d07" />
+<img width="975" height="763" alt="image" src="https://github.com/user-attachments/assets/1f2e7028-0fd8-47b3-9703-6863a94a2146" />
+
+Step 5: Open a Powershell window with run as admin.    
+<img width="975" height="808" alt="image" src="https://github.com/user-attachments/assets/6fbbcdf8-d488-47ba-9bcf-2e7bae5b15fc" />
+<img width="746" height="579" alt="image" src="https://github.com/user-attachments/assets/5e2cc344-bcf1-4381-849c-023508593cbf" />
+<img width="975" height="517" alt="image" src="https://github.com/user-attachments/assets/c4c089ad-7b0e-4889-bd89-8cccece252d4" />
+
+Step 6: Copy file path where you extracted the files to by going to search bar, highlight, right click + copy.  
+<img width="975" height="819" alt="image" src="https://github.com/user-attachments/assets/14e20784-4445-4ce0-b90a-09d1287efb06" />
+
+Step 7: type in “cd ‘right + click’ on Powershell then press enter. This command moves you to the directory of the copied file path.   
+<img width="975" height="517" alt="image" src="https://github.com/user-attachments/assets/056e7503-7af1-4084-953a-26e07f01b704" />
+
+Step 8: Move the config files to the sysmon folder we extracted.  
+<img width="975" height="742" alt="image" src="https://github.com/user-attachments/assets/41c052a6-42fb-47c8-bf79-adbcc4264c3d" />
+
+Step 9: [Option 1] lets install sysmon by typing in command “.\Sysmon64.exe” + enter while in the directory of the sysmon folder. I chose 64 because I am running a 64-bit system.  
+<img width="975" height="817" alt="image" src="https://github.com/user-attachments/assets/27da1f02-cd7f-4ea7-aeba-5d18405e2a89" />
+
+Step 10: [Option 2] lets install sysmon by using the config file to install it. Type in command “.\sysmon64.exe -i sysmonconfig.xml + Enter” in Powershell. Make sure you are in the directory of the sysmon folder.  
+<img width="975" height="815" alt="image" src="https://github.com/user-attachments/assets/2363a255-373f-4831-ae82-47ca16d94a23" />
+<img width="975" height="521" alt="image" src="https://github.com/user-attachments/assets/62a05fd6-ca67-4c21-8ca2-65ce219d99ff" />
+
+Step 11: Lets check if Sysmon installed properly by going to search “Event Viewer”. 
+<img width="975" height="815" alt="image" src="https://github.com/user-attachments/assets/b64caefc-2748-4ec3-9aa4-de996d4f0659" />
+
+Step 12: Expand App and Services Logs > Microsoft > Windows, then look for “Sysmon”. 
+<img width="975" height="810" alt="image" src="https://github.com/user-attachments/assets/32a3b71d-646f-4f88-bca6-a3d666d230e2" />
+<img width="975" height="688" alt="image" src="https://github.com/user-attachments/assets/e7f4c847-5e25-4187-94d1-0be70c9410aa" />
+<img width="975" height="688" alt="image" src="https://github.com/user-attachments/assets/dc64d13c-4cd0-499e-a1fc-fd35f113ec3d" />
+
+Step 13: Lets check if Sysmon is in services by searching “Services”.   
+<img width="975" height="808" alt="image" src="https://github.com/user-attachments/assets/2e244b05-6020-40d3-b7d5-031ca18751ac" />
+<img width="975" height="819" alt="image" src="https://github.com/user-attachments/assets/6ec78305-86f9-4a86-84b3-7e624a125c51" />
+
+Step 14: Back to Event Viewer… Now we can go on Sysmon > Operational and view a bunch of useful telematry!  
+<img width="975" height="725" alt="image" src="https://github.com/user-attachments/assets/09a0ec64-e310-47e5-9f75-19035057bc2e" />
 
 
 
