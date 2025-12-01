@@ -95,19 +95,19 @@ For the complete step-by-step guide (including all screenshots), see:
 ### Future Improvements
 To expand the scope of this lab and transition it into a more realistic representation of an enterprise monitoring environment, the following improvements are planned:
 
-#### I. Advanced Detection and Automation 🤖
+#### I. Advanced Detection and Automation 
 
 * **Custom Correlation Rules:** Develop specific, high-fidelity alerts within Splunk that trigger when a sequence of suspicious events occurs (e.g., a process execution followed immediately by a network connection to an unknown external IP).
     * *Goal:* Reduce alert fatigue by creating rules based on confirmed **Tactics, Techniques, and Procedures (TTPs)** rather than single events.
 * **Dashboard Development:** Build a dedicated **Threat Triage Dashboard** in Splunk to visualize key Sysmon data (Process, Network, File activity) and facilitate rapid, efficient incident review.
 * **MITRE ATT&CK Mapping:** Map all simulated attacker actions (e.g., Execution, Command and Control) to the appropriate **MITRE ATT&CK Framework** techniques to build a structured defense plan.
 
-#### II. Network and External Telemetry 🌐
+#### II. Network and External Telemetry 
 
 * **Introduce Network Security Monitoring (NSM):** Integrate a dedicated open-source NSM tool like **Security Onion** or **Suricata/Zeek** on a separate VM.
 * **Layered Logging:** Begin ingesting network flow logs and Intrusion Detection System (IDS) alerts alongside the host-based Sysmon data. This will allow for true **defense-in-depth** analysis by cross-validating endpoint telemetry with network traffic.
 
-#### III. Expanded Threat Simulation & Complexity 📈
+#### III. Expanded Threat Simulation & Complexity 
 
 * **Simulate Persistence:** Conduct new simulations targeting persistence mechanisms, such as modifying the Windows Registry (**Run Keys**) or creating scheduled tasks. Analyze the resulting **Sysmon Registry EventCodes (12, 13, 14)** to build targeted registry monitoring rules.
 * **Credential Theft Simulation:** Utilize tools like Mimikatz (safely within the isolated lab) to simulate credential dumping and focus on detecting the suspicious process access events that precede successful theft.
@@ -123,39 +123,7 @@ This project successfully achieved its core objective: deploying a fully isolate
 * **Critical Thinking & Anomaly Detection:** The analysis went beyond simple alert confirmation. It identified the **anomalous behavior** of the malicious `resume.pdf.exe` spawning the legitimate **`WerFault.exe`** (Windows Error Reporting). This demonstrated the ability to detect subtle **Indicators of Compromise (IOCs)** and understand common attacker techniques (e.g., using a crash to obscure execution), a core competency for SOC Analysts.
 * **Systems and Network Hardening:** Established a secure, segmented lab environment (192.168.20.0/24), showcasing practical systems administration and network isolation skills crucial for safe, repeatable threat testing.
 
-***
 
-## Conclusion
-
-This project successfully achieved its core objective: deploying a fully isolated, instrumented home lab capable of high-fidelity threat detection and analysis. The work confirmed proficiency across several critical domains relevant to a Security Operations Center (SOC) role:
-
-* **Detection Engineering Proficiency:** Successfully deployed and integrated industry-standard host logging (**Sysmon**) with a leading **SIEM** platform (**Splunk**), demonstrating the ability to establish and maintain an effective security monitoring infrastructure.
-* **Log Triage & Incident Analysis:** Used **Splunk Search Processing Language (SPL)** to efficiently triage logs, specifically isolating and analyzing the attack chain's most critical event (**Process Creation, EventCode 1**).
-* **Critical Thinking & Anomaly Detection:** The analysis went beyond simple alert confirmation. It identified the **anomalous behavior** of the malicious `resume.pdf.exe` spawning the legitimate **`WerFault.exe`** (Windows Error Reporting). This demonstrated the ability to detect subtle **Indicators of Compromise (IOCs)** and understand common attacker techniques (e.g., using a crash to obscure execution), a core competency for SOC Analysts.
-* **Systems and Network Hardening:** Established a secure, segmented lab environment (192.168.20.0/24), showcasing practical systems administration and network isolation skills crucial for safe, repeatable threat testing.
-
-***
-
-## Future Improvements
-
-To expand the scope of this lab and transition it into a more realistic representation of an enterprise monitoring environment, the following improvements are planned:
-
-#### I. Advanced Detection and Automation 🤖
-
-* **Custom Correlation Rules:** Develop specific, high-fidelity alerts within Splunk that trigger when a sequence of suspicious events occurs (e.g., a process execution followed immediately by a network connection to an unknown external IP).
-    * *Goal:* Reduce alert fatigue by creating rules based on confirmed **Tactics, Techniques, and Procedures (TTPs)** rather than single events.
-* **Dashboard Development:** Build a dedicated **Threat Triage Dashboard** in Splunk to visualize key Sysmon data (Process, Network, File activity) and facilitate rapid, efficient incident review.
-* **MITRE ATT&CK Mapping:** Map all simulated attacker actions (e.g., Execution, Command and Control) to the appropriate **MITRE ATT&CK Framework** techniques to build a structured defense plan.
-
-#### II. Network and External Telemetry 🌐
-
-* **Introduce Network Security Monitoring (NSM):** Integrate a dedicated open-source NSM tool like **Security Onion** or **Suricata/Zeek** on a separate VM.
-* **Layered Logging:** Begin ingesting network flow logs and Intrusion Detection System (IDS) alerts alongside the host-based Sysmon data. This will allow for true **defense-in-depth** analysis by cross-validating endpoint telemetry with network traffic.
-
-#### III. Expanded Threat Simulation & Complexity 📈
-
-* **Simulate Persistence:** Conduct new simulations targeting persistence mechanisms, such as modifying the Windows Registry (**Run Keys**) or creating scheduled tasks. Analyze the resulting **Sysmon Registry EventCodes (12, 13, 14)** to build targeted registry monitoring rules.
-* **Credential Theft Simulation:** Utilize tools like Mimikatz (safely within the isolated lab) to simulate credential dumping and focus on detecting the suspicious process access events that precede successful theft.
 
 #### Directory 
 
