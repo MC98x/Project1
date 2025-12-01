@@ -77,8 +77,6 @@ The objective of this project was to architect and deploy a robust, virtualized 
 
 **Suspicious Parent/Child Process Execution**
 ![Malware Process Execution](docs/screenshots/splunk-process-telemetry.png)
-**Analysis:**
-
 - The parent process `resume.pdf.exe` is suspicious — PDFs are never `.exe` files.  
 - Located in the Downloads folder, typical for malware payloads.  
 - The child process `WerFault.exe` is legitimate, but here it is spawned unusually by the malicious executable.  
