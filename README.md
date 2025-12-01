@@ -70,8 +70,8 @@ The objective of this project was to architect and deploy a robust, virtualized 
 7. [Import Kali Linux to VirtualBox](#import-kali-linux-to-virtualbox)
 8. [Creating Snapshots to revert to baseline config](#creating-snapshots-to-revert-to-baseline-config)
 9. [Configuring VMs Based On Use Case Scenario](#configuring-vms-based-on-use-case-scenario)
-10. [Scenario #1: Testing Tools That Require Internet Connectivity](#scenario-#1-testing-tools-that-require-internet-connectivity)
-11. [Scenario #2: Analyzing Malware Recommended Settings](#scenario-#2:-analyzing-malware-recommended-settings)
+10. [Scenario 1: Testing Tools That Require Internet Connectivity](#scenario-1-testing-tools-that-require-internet-connectivity)
+11. [Scenario 2: Analyzing Malware Recommended Settings](#scenario-2:-analyzing-malware-recommended-settings)
 
 #### Installing VirtualBox
 Step 1: Head to https://www.virtualbox.org/wiki/Downloads and click download. 
@@ -247,7 +247,7 @@ Step 1: This is simple. Use NAT and default settings for you Win11 Pro and Kali 
 <img width="975" height="652" alt="image" src="https://github.com/user-attachments/assets/4ae0faa7-1525-416d-ab34-b330af96d008" />
 Step 2: Repeat the same step into Kali Linux VM to “NAT”. It should be NAT already by default.
 
-#### Scenario #2: Analyzing Malware Recommended Settings
+#### Scenario 2: Analyzing Malware Recommended Settings
 
 
 
