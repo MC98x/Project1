@@ -63,51 +63,25 @@ The objective of this project was to architect and deploy a robust, virtualized 
 
 1. [Installing VirtualBox](#installing-virtualbox)
 
-
--
--
--
--
--
--
--
--
--
--
--
--
--
--
--
---
--
--
--
--
--
--
--
--
--
--
--
--
---
--
--
--
--
--
--
--
--
--
--
--
--
--
---
 #### Installing VirtualBox
+Step 1: Head to https://www.virtualbox.org/wiki/Downloads and click download. 
+<img width="975" height="731" alt="image" src="https://github.com/user-attachments/assets/f3fe5736-ef0e-4657-b1c4-4172bd811086" />
+
+Step 1.2: Choose the operating system you are using… in my case Windows. 
+<img width="975" height="675" alt="image" src="https://github.com/user-attachments/assets/88bc5a72-cc3b-45d8-a20b-d7fe249548a5" />
+
+Step 2.1: Compare Hash values to verify integrity of installer. 
+<img width="975" height="906" alt="image" src="https://github.com/user-attachments/assets/fb1546b5-882c-44fc-b69b-1ce014e524f9" />
+
+Step 2.2 Find the VirtualBox version of what you downloaded inside the checksum list. In my case “VirtualBox-7.2.4-170995-Win.exe” 
+<img width="975" height="423" alt="image" src="https://github.com/user-attachments/assets/a5fe0d1e-2723-4774-831d-5ff766179b67" />
+
+Step 2.3 Go to where you downloaded the file > Right Click > Then click “Open in Terminal” 
+<img width="975" height="467" alt="image" src="https://github.com/user-attachments/assets/87b9cc9f-b69a-436d-9fc9-12c2d8cf1a8b" />
+
+**Step2.4:** This will open up powershell and in powershell type command 
+
+
 
   
 
