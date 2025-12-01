@@ -59,7 +59,7 @@ The objective of this project was to architect and deploy a robust, virtualized 
 
 ### Key Results
 **Suspicious Network Activity** 
-![Malware Network Telemetry](docs/screenshots/splunk-network-telemtry.png)
+![Malware Network Telemetry](docs/screenshots/splunk-network-telemetry.png)
 **Analysis:**
 
 - IP address `192.168.20.11` attempts to reach port **4444**, which is commonly used for Metasploit reverse shells or C2 channels.  
