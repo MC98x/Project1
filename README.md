@@ -220,7 +220,7 @@ Step 2: Name the snapshot to your preference
 <img width="742" height="579" alt="image" src="https://github.com/user-attachments/assets/ab3b562e-57ad-4a95-b46f-339cbe683dee" />
 <img width="975" height="765" alt="image" src="https://github.com/user-attachments/assets/cf1347ff-35d4-4492-9e8b-9f11bf9e28a4" />
 
-### Configuring VMs Based On Use Case Scenario
+#### Configuring VMs Based On Use Case Scenario
 Step 1: Before we start configuring our VMs we must know what each network settings on VirtualBox do so we know which one to use based on any lab scenario you might test.  
  
 NAT: Default mode; VM accesses the internet through the host (safe, isolated).
@@ -417,7 +417,7 @@ Step 13: Lets check if Sysmon is in services by searching “Services”.
 Step 14: Back to Event Viewer… Now we can go on Sysmon > Operational and view a bunch of useful telematry!  
 <img width="975" height="725" alt="image" src="https://github.com/user-attachments/assets/09a0ec64-e310-47e5-9f75-19035057bc2e" />
 
-### Configuring Splunk To Ingest Sysmon Logs
+#### Configuring Splunk To Ingest Sysmon Logs
 Step 1: Download the custom “inputs.conf” file at https://tinyurl.com/MyDFIR-Splunk-Inputs. This custom input configures splunk to ingest sysmon logs.  
 <img width="975" height="954" alt="image" src="https://github.com/user-attachments/assets/52d6ffe6-fdbb-4e99-a072-535cf98a7f3d" />
 
