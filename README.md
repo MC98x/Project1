@@ -476,7 +476,7 @@ Step 4: Lets get started with NMAP by viewing the available commands. In the ter
 <img width="965" height="142" alt="image" src="https://github.com/user-attachments/assets/dd029763-cfa9-4159-8522-e324925ec877" />
 
 Step 5: Lets do command “nmap -A 192.168.20.10 -Pn” to scan our Windows 11 VM and skipping ping to see what information we receive from the Win 11 VM.   
-<img width="975" height="840" alt="image" src="https://github.com/user-attachments/assets/bcada209-3f0d-46b8-83c1-92804453af45" />
+
 
 Step 5: Lets create our malware using msfvenom. Do command “msfvenom + enter” in terminal.   
 Step 6: Lets see the available payloads we have by doing command “msfvenom -l payloads”. There will be plenty listed but we are using the “windows/x64/meterpreter/reverse_tcp” payload. Take note of  “windows/x64/meterpreter/reverse_tcp” since that is the one we will use. 
